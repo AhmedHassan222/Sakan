@@ -1,0 +1,59 @@
+body {
+  direction: rtl;
+  font-family: "Cairo", sans-serif;
+}
+
+* {
+  margin: 0;
+}
+
+span:hover {
+  cursor: pointer;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+textarea {
+  resize: none;
+}
+
+*::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(175, 175, 175);
+}
+
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+input,
+textarea,
+select {
+  border-radius: 10px;
+  border: solid 1px rgb(158, 158, 158);
+}
+
+form {
+  width: 30%;
+  box-shadow: 0px 0px 20px rgb(219, 219, 219);
+}
+
+@media screen and (min-width:0px) and (max-width:576px) {
+  form {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width:577px) and (max-width:991px) {
+  form {
+    width: 50%;
+  }
+}
