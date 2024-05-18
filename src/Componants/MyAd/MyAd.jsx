@@ -6,12 +6,9 @@ import axios from "axios";
 import fakeImage from "../../assets/images/Annotation 2024-02-21 205940.png"
 
 export default function MyAd() {
-
+    let {setElement } = useContext(FilterProducts)
     const [myAdv, setAdv] = useState([]);
     let { setExpired, expired, userData, setuserData, language } = useContext(FilterProducts)
-    const [id, setId] = useState({
-        productId: ""
-    })
     let navigate = useNavigate()
     async function getMyAdv() {
         try {
@@ -21,11 +18,12 @@ export default function MyAd() {
             console.log(error);
         }
     }
-
     async function deleteProperty(ItemId) {
-        id["productId"] = ItemId;
-        setId(id)
-        await axios.delete(`https://zunis-node-js.vercel.app/product/delete?productId=${ItemId}`, id)
+        await axios.delete(`https://zunis-node-js.vercel.app/product/delete?productId=${ItemId}` , {
+            headers: {
+                "token": `Ahmed__${localStorage.getItem("user")}`
+            },
+        })
             .then(response => {
                 console.log(response.data);
             })
@@ -35,8 +33,9 @@ export default function MyAd() {
     }
 
 
-    function updateProperty(id, item) {
-        navigate(`/myzone`)
+    function updateProperty(itemId , item) {
+        setElement(item);
+        navigate(`/myzone/addProduct/${itemId}`)
     }
 
     useEffect(() => {

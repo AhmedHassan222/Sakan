@@ -7,10 +7,11 @@ function FilterProductsProvide(props) {
     const [userData, setuserData] = useState(null)
     const [type, settype] = useState("home")
     const [language , setLanguage] = useState('ع')
+    const [element, setElement] = useState(null)
 
 
 
-    return <FilterProducts.Provider value={{language , setLanguage, price, type, settype, userData, setuserData, expired, setExpired, wordSearch, setPrice, setWordSearch }}>
+    return <FilterProducts.Provider value={{element, setElement , language , setLanguage, price, type, settype, userData, setuserData, expired, setExpired, wordSearch, setPrice, setWordSearch }}>
         {props.children}
     </FilterProducts.Provider>
 }
