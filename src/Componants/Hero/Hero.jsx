@@ -58,12 +58,7 @@ export default function Hero() {
                                 }}
                                 value={type}
                             >
-                                <option value={"....."}>
-                                    <a className="dropdown-item" href="#">
-                                        {language == 'ع' ? `Type property` : `نوع العقار`}
 
-                                    </a>
-                                </option>
                                 <option value={"home"}>
                                     <a className="dropdown-item" href="#">
 

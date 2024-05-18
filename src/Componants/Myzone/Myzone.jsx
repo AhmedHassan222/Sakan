@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import { FilterProducts } from './../../Context/FilterProducts';
 export default function Myzone() {
     //V A R I A B L E S >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    let {language} = useContext(FilterProducts)
+    let { language } = useContext(FilterProducts)
     let { status, id } = useParams();
     const [error, setError] = useState(null)
     const [propertyDesc, SetPropertyDesc] = useState({ size: 0, view: "", yearOfConstruction: 0, bathrooms: 0, bedrooms: 0, finishingType: "", shahrAqary: "", floor: 0 })
@@ -147,117 +147,120 @@ export default function Myzone() {
     // R E N D E R     C O D E   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     return <>
         <Helmet>
-            {language =='ع' ?"My zone - Sakan ":"منطقتي - سكن"}
-            
+            {language == 'ع' ? "My zone - Sakan " : "منطقتي - سكن"}
+
         </Helmet>
         <div className="container py-5">
-            
+
             <div className={`  my-5  `}>
                 <div className=" ">
                     <form onSubmit={submitForm} className={`w-100 p-5 border-0`} action="" encType='multibart/form-data'>
                         <div className="form-group my-4">
-                            <label htmlFor="file" className="mb-3"> {language =='ع' ?"Select images":"اختر مجموعة صور"}</label>
+                            <label htmlFor="file" className="mb-3"> {language == 'ع' ? "Select images" : "اختر مجموعة صور"}</label>
                             <input multiple onChange={handleImageChange} id="file" type="file" className="w-100 p-2 " name='image' />
                         </div>
                         <div className="form-group my-4">
-                            <label htmlFor="section" className="mb-3">  {language =='ع' ?"Select Process*":"اختار العملية *"} </label>
+                            <label htmlFor="section" className="mb-3">  {language == 'ع' ? "Select Process*" : "اختار العملية *"} </label>
                             <select onChange={getItem} name="section" id="section" className=" w-100 p-2 ">
                                 <option value="">...</option>
-                                <option value="rent">  {language =='ع' ?"For Rent":"للايجار"}</option>
-                                <option value="sale"> {language =='ع' ?"For Sale":"للبيع"}</option>
+                                <option value="rent">  {language == 'ع' ? "For Rent" : "للايجار"}</option>
+                                <option value="sale"> {language == 'ع' ? "For Sale" : "للبيع"}</option>
                             </select>
                         </div>
                         <div className="form-group my-4">
-                            <label htmlFor="title" className="mb-3"> {language =='ع' ?"Add Title*":"اضف عنوانا للاعلان *"}</label>
+                            <label htmlFor="title" className="mb-3"> {language == 'ع' ? "Add Title*" : "اضف عنوانا للاعلان *"}</label>
                             <input onChange={getItem} id="title" type="text" className="w-100 p-2  " value={value} name='title' />
-                            <div className="text-start pt-2">{language =='ع' ? `${letters}/55 letters `:`${letters} / 55 حرف `}</div>
+                            <div className="text-start pt-2">{language == 'ع' ? `${letters}/55 letters ` : `${letters} / 55 حرف `}</div>
                         </div>
                         <div className="form-group my-4">
-                            <label htmlFor="price" className="mb-3"> {language =='ع' ?"Add price in EGP*":"اضف السعر بالجنية المصري *"}</label>
+                            <label htmlFor="price" className="mb-3"> {language == 'ع' ? "Add price in EGP*" : "اضف السعر بالجنية المصري *"}</label>
                             <input onChange={getItem} id="price" type="text" className="w-100 p-2  " name='price' />
                         </div>
                         <div className="form-group my-4">
-                            <label htmlFor="caption" className="mb-3">   {language =='ع' ?"Describe property*":" وصف العقار *"}</label>
+                            <label htmlFor="caption" className="mb-3">   {language == 'ع' ? "Describe property*" : " وصف العقار *"}</label>
                             <textarea rows={5} onChange={getItem} id="caption" type="text" className="w-100 p-2  " name='caption' />
                         </div>
                         <div className="form-group my-4">
-                            <label htmlFor="city" className="mb-3">  {language =='ع' ?"City*":"المحافظة *"}</label>
+                            <label htmlFor="city" className="mb-3">  {language == 'ع' ? "City*" : "المحافظة *"}</label>
                             <input onChange={getItem} id="city" type="text" className="w-100 p-2  " name='location' />
                         </div>
                         <div className="form-group my-4">
-                            <label htmlFor="desLocation" className="mb-3">   {language =='ع' ?"Address in details*":"العنوان بالتفاصيل  *"}</label>
+                            <label htmlFor="desLocation" className="mb-3">   {language == 'ع' ? "Address in details*" : "العنوان بالتفاصيل  *"}</label>
                             <input onChange={getItem} id="desLocation" type="text" className="w-100 p-2  " name='descLocation' />
                         </div>
                         <div className="form-group my-4">
-                            <label htmlFor="size" className="mb-3">   {language =='ع' ?"Size of property*":" مساحة العقار بالمتر المربع *"}</label>
+                            <label htmlFor="size" className="mb-3">   {language == 'ع' ? "Size of property*" : " مساحة العقار بالمتر المربع *"}</label>
                             <input onChange={getItemSpecial} id="size" type="number" className="w-100 p-2  " name='size' />
                         </div>
                         <div className="form-group my-4">
-                            <label htmlFor="view" className="mb-3">    {language =='ع' ?"View":" الاطلالة (علي ماذا يطل العقار؟)"}  </label>
+                            <label htmlFor="view" className="mb-3">    {language == 'ع' ? "View" : " الاطلالة (علي ماذا يطل العقار؟)"}  </label>
                             <input onChange={getItemSpecial} id="view" type="text" className="w-100 p-2  " name='view' />
                         </div>
                         <div className="form-group my-4">
-                            <label htmlFor="yearsOfConstruction" className="mb-3">      {language =='ع' ?"Year of Property":"مباني سنة "} </label>
+                            <label htmlFor="yearsOfConstruction" className="mb-3">      {language == 'ع' ? "Year of Property" : "مباني سنة "} </label>
                             <input onChange={getItemSpecial} id="yearsOfConstruction" type="number" placeholder="مثال : 2002" className="w-100 p-2  " name='yearOfConstruction' />
                         </div>
                         <div className="form-group my-4">
-                            <label htmlFor="bathroom" className="mb-3">{language =='ع' ?"Numbers of Bathrooms":" عدد الحمامات "}</label>
+                            <label htmlFor="bathroom" className="mb-3">{language == 'ع' ? "Numbers of Bathrooms" : " عدد الحمامات "}</label>
                             <input onChange={getItemSpecial} id="bathroom" type="number" min={1} className="w-100 p-2  " name='bathrooms' />
                         </div>
                         <div className="form-group my-4">
-                            <label htmlFor="bedroom" className="mb-3">  {language =='ع' ?"Numbers of Bedrooms":"عدد الغرف "}</label>
+                            <label htmlFor="bedroom" className="mb-3">  {language == 'ع' ? "Numbers of Bedrooms" : "عدد الغرف "}</label>
                             <input onChange={getItemSpecial} id="bedroom" type="number" min={1} className="w-100 p-2  " name='bedrooms' />
                         </div>
                         <div className="form-group my-4">
-                            <label htmlFor="floor" className="mb-3">  {language =='ع' ?"Floor":"الدور"} </label>
+                            <label htmlFor="floor" className="mb-3">  {language == 'ع' ? "Floor" : "الدور"} </label>
                             <input onChange={getItemSpecial} id="floor" type="number" min={1} className="w-100 p-2  " name='floor' />
                         </div>
                         <div className="form-group my-4">
-                            <label htmlFor="finishingType" className="mb-3"> {language =='ع' ?"Type of Finishing":"نوع التشطيب "}</label>
+                            <label htmlFor="finishingType" className="mb-3"> {language == 'ع' ? "Type of Finishing" : "نوع التشطيب "}</label>
                             <select onChange={getItemSpecial} name="finishingType" id="finishingType" className=" w-100 p-2 ">
                                 <option value="">...</option>
-                                <option value="super lux"> {language =='ع' ?"Super Lux":"سوبر لوكس "}</option>
-                                <option value="lux"> {language =='ع' ?"Lux":"لوكس"}</option>
-                                <option value="without finished"> {language =='ع' ?"Witout finished":"لم ينتهي بعد "}</option>
-                                <option value="Garden"> {language =='ع' ?"Garden":"حدايق"}</option>
+                                <option value="super lux"> {language == 'ع' ? "Super Lux" : "سوبر لوكس "}</option>
+                                <option value="lux"> {language == 'ع' ? "Lux" : "لوكس"}</option>
+                                <option value="without finished"> {language == 'ع' ? "Witout finished" : "لم ينتهي بعد "}</option>
+                                <option value="Garden"> {language == 'ع' ? "Garden" : "حدايق"}</option>
                             </select>
                         </div>
                         <div className="form-group my-4">
-                            <label htmlFor="shahrAqary" className="mb-3">   {language =='ع' ?"Sharh Aqary*":"التسجيل في الشهر العقاري *"}</label>
+                            <label htmlFor="shahrAqary" className="mb-3">   {language == 'ع' ? "Sharh Aqary*" : "التسجيل في الشهر العقاري *"}</label>
                             <select onChange={getItemSpecial} name="shahrAqary" id="shahrAqary" className=" w-100 p-2 ">
                                 <option value="">...</option>
-                                <option value="registered"> {language =='ع' ?"Registered":"مسجلة"}</option>
-                                <option value="eligible"> {language =='ع' ?"Eligible":"صالحة"}</option>
-                                <option value="not sure">  {language =='ع' ?"Not Sure":"غير متأكد "}</option>
+                                <option value="registered"> {language == 'ع' ? "Registered" : "مسجلة"}</option>
+                                <option value="eligible"> {language == 'ع' ? "Eligible" : "صالحة"}</option>
+                                <option value="not sure">  {language == 'ع' ? "Not Sure" : "غير متأكد "}</option>
                             </select>
                         </div>
                         <div className="form-group my-4">
-                            <label htmlFor="PaymentMethod" className="mb-3">   {language =='ع' ?"Payment Method*":"طرق الدفع *"}</label>
+                            <label htmlFor="PaymentMethod" className="mb-3">   {language == 'ع' ? "Payment Method*" : "طرق الدفع *"}</label>
                             <select onChange={getItem} name="PaymentMethod" id="PaymentMethod" className=" w-100 p-2">
                                 <option value="">...</option>
-                                <option value="cash">{language =='ع' ?"Cash":"الدفع نقدا "}</option>
-                                <option value="installments">{language =='ع' ?"Installments":"الدفع بالتقسيط "}</option>
-                                <option value="both">  {language =='ع' ?"Both":"كلاهما"}</option>
+                                <option value="cash">{language == 'ع' ? "Cash" : "الدفع نقدا "}</option>
+                                <option value="installments">{language == 'ع' ? "Installments" : "الدفع بالتقسيط "}</option>
+                                <option value="both">  {language == 'ع' ? "Both" : "كلاهما"}</option>
                             </select>
                         </div>
                         <div className=" p-2 d-flex justify-content-end">
                             {status == 'addProduct' ? <button type="submit" className="btn btn-primary ">  {isLoading ? <div className="spinner-border " role="status">
                                 <span className="visually-hidden  ">Loading...</span>
-                            </div> : language== 'ع' ? "Add":"اضف"} </button> : ''}
+                            </div> : language == 'ع' ? "Add" : "اضف"} </button> : ''}
                         </div>
                         <h3 className="h5 text-danger py-4 ">{error}</h3>
-                        {errorList.length > 0 ? errorList.map((item, index) => <p className="text-danger" key={index}>{item.message}</p>) : ""}
+
+                        {errorList.length > 0 ? <ul>
+                            {errorList.map((item, index) => <li className="text-danger" key={index}>{item.message}</li>)}
+                        </ul> : ""}
                         {error ? <h3 className="text-danger">{error}</h3> : ''}
                     </form>
                 </div>
 
             </div>
             <div className="my-3">
-                <h3> {language =='ع' ?"Advices for your ads will be accepted":"نصائح لقبول اعلانك "}</h3>
+                <h3> {language == 'ع' ? "Advices for your ads will be accepted" : "نصائح لقبول اعلانك "}</h3>
                 <ul className="py-3">
-                    <li className="py-1"> {language =='ع' ?"Add clear Title.":"اضف عنوانا واضحا."}</li>
-                    <li className="py-1"> {language =='ع' ?"Add at least 3 images with good resolution":"اضف علي الاقل 3 صور ذات جودات مرتفعة و واضحة."}</li>
-                    <li className="py-1">  {language =='ع' ?"Fill all Inputs with fact data.":"املء جميع الحقول ببيانات حقيقة."} </li>
+                    <li className="py-1"> {language == 'ع' ? "Add clear Title." : "اضف عنوانا واضحا."}</li>
+                    <li className="py-1"> {language == 'ع' ? "Add at least 3 images with good resolution" : "اضف علي الاقل 3 صور ذات جودات مرتفعة و واضحة."}</li>
+                    <li className="py-1">  {language == 'ع' ? "Fill all Inputs with fact data." : "املء جميع الحقول ببيانات حقيقة."} </li>
                 </ul>
             </div>
         </div>
