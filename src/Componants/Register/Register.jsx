@@ -4,14 +4,16 @@ import { Link, useNavigate } from "react-router-dom"
 import Joi from "joi"
 import { Helmet } from "react-helmet"
 import { FilterProducts } from './../../Context/FilterProducts';
-
+import style from "./Register.module.css"
+import eye from "../../assets/images/eye.jpg"
+import not from "../../assets/images/not.jpg"
 export default function Register() {
     let { language } = useContext(FilterProducts)
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
 
-
+    const [viewPassword, setViewPassword] = useState(true);
     let navigate = useNavigate()
     let [errorList, setErrorList] = useState([])
 
@@ -75,39 +77,47 @@ export default function Register() {
 
     return <>
         <Helmet>
-            
-            {language== 'ع' ? `Sign up - Sakan` :`انشاء حساب - سكن`}
+
+            {language == 'ع' ? `Sign up - Sakan` : `انشاء حساب - سكن`}
         </Helmet>
         <div className="py-5">
             <div className="d-flex w-100 justify-content-center py-5">
                 <form onSubmit={submitForm} action="" className={` p-4 `}>
-                    <h3 className="mb-3 h4 ">{language== 'ع' ? `Sign up` :`انشاء حساب `}</h3>
+                    {errorList.length > 0 ? <ul>
+                        {errorList.map((item, index) => <li className="text-danger" key={index}>{item.message}</li>)}
+
+                    </ul> :""}
+                    
+                    <h3 className="mb-3 h4 ">{language == 'ع' ? `Sign up` : `انشاء حساب `}</h3>
                     <div className="form-group my-3">
-                        <input onChange={getUser} type="text" placeholder={language== 'ع' ? `full Name` :`الاسم بالكامل`} className="w-100 p-2 " name="fullName" />
-                        {errorList.length > 0 ? <p className="text-danger">{errorList[0].message}</p> : ""}
+                        <input onChange={getUser} type="text" placeholder={language == 'ع' ? `full Name` : `الاسم بالكامل`} className="w-100 p-2 " name="fullName" />
                     </div>
                     <div className="form-group my-3">
-                        <input onChange={getUser} type="text" placeholder={language== 'ع' ? `Email` :`البريد الالكتروني`} className="w-100 p-2 " name="email" />
-                        {errorList.length > 0 ? <p className="text-danger">{errorList[1].message}</p> : ""}
+                        <input onChange={getUser} type="text" placeholder={language == 'ع' ? `Email` : `البريد الالكتروني`} className="w-100 p-2 " name="email" />
+                    </div>
+                    <div className="form-group my-3 ">
+                        <div className="position-relative">
+                            <input onChange={getUser} type={viewPassword == false ? "text" : "password"} name="password" placeholder={language == 'ع' ? `Password` : `كلمة المرور`} className="w-100 p-2 " />
+                            {viewPassword ? <img onClick={() => { setViewPassword(false) }} className={`${style.imgIcon}  `} src={not} alt="" /> : <img onClick={() => { setViewPassword(true) }} className={`${style.imgIcon}`} src={eye} alt="" />}
+                        </div>
+
+
+                    </div>
+                    <div className="form-group my-3 ">
+                        <div className="position-relative">
+                            <input onChange={getUser} type={viewPassword == false ? "text" : "password"} name="cpassword" placeholder={language == 'ع' ? `Confirm Password` : `تاكيد كلمة المرور`} className="w-100 p-2 " />
+                            {viewPassword ? <img onClick={() => { setViewPassword(false) }} className={`${style.imgIcon}  `} src={not} alt="" /> : <img onClick={() => { setViewPassword(true) }} className={`${style.imgIcon}`} src={eye} alt="" />}
+                        </div>
+
                     </div>
                     <div className="form-group my-3">
-                        <input onChange={getUser} type="password" name="password" placeholder={language== 'ع' ? `Password` :`كلمة المرور`} className="w-100 p-2 " />
-                        {errorList.length > 0 ? <p className="text-danger">{errorList[2].message}</p> : ""}
-                    </div>
-                    <div className="form-group my-3">
-                        <input onChange={getUser} type="password" name="cpassword" placeholder={language== 'ع' ? `Confirm Password` :`تاكيد كلمة المرور`} className="w-100 p-2 " />
-                        {errorList.length > 0 ? <p className="text-danger">{errorList[3].message}</p> : ""}
-                    </div>
-                    <div className="form-group my-3">
-                        <input onChange={getUser} type="text" name="phoneNumber" placeholder={language== 'ع' ? `Phone number` :`رقم الهاتف`} className="w-100 p-2 " />
-                        {errorList.length > 0 ? <p className="text-danger">{errorList[4].message}</p> : ""}
+                        <input onChange={getUser} type="text" name="phoneNumber" placeholder={language == 'ع' ? `Phone number` : `رقم الهاتف`} className="w-100 p-2 " />
                     </div>
                     <select onChange={(getUser)} className="w-100 p-1 " name="typeOfUser">
-                        <option value="">...</option>
-                        <option value="owner of real estate">{language== 'ع' ? `owner of property` :`صاحب عقار `}</option>
-                        <option value="marketing company"> {language== 'ع' ? `Marketing Company` :`شركة تسويق عقاري `}</option>
-                        <option value="other"> {language== 'ع' ? `Other` :`شيء اخر `}</option>
-                        {errorList.length > 0 ? <p className="text-danger">{errorList[5].message}</p> : ""}
+                        <option value="">{language == 'ع' ? `-- Type of Account --` : `-- نوع الحساب `}</option>
+                        <option value="owner of real estate">{language == 'ع' ? `owner of property` : `صاحب عقار `}</option>
+                        <option value="marketing company"> {language == 'ع' ? `Marketing Company` : `شركة تسويق عقاري `}</option>
+                        <option value="other"> {language == 'ع' ? `Other` : `شيء اخر `}</option>
                     </select>
 
 
@@ -115,10 +125,10 @@ export default function Register() {
                         {error ? <p className="text-danger">{error}</p> : ""}
                         <button type="submit" className="btn btn-primary rounded-0 w-100 ">  {isLoading ? <div className="spinner-border " role="status">
                             <span className="visually-hidden  ">Loading...</span>
-                        </div> : language=='ع' ?"Register":'انشاء حساب'} </button>
+                        </div> : language == 'ع' ? "Register" : 'انشاء حساب'} </button>
                     </div>
-                    {language== 'ع' ? <p className="mt-3">   I have Accout<Link to={'/login'}>  Login</Link>  </p> :<p className="mt-3"> لدي حساب بالفعل<Link to={'/login'}> تسجيل الدخول</Link>  </p>}
-                    
+                    {language == 'ع' ? <p className="mt-3">   I have Accout<Link to={'/login'}>  Login</Link>  </p> : <p className="mt-3"> لدي حساب بالفعل<Link to={'/login'}> تسجيل الدخول</Link>  </p>}
+
 
                 </form>
             </div>

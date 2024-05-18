@@ -1,0 +1,13 @@
+
+.imgIcon 
+{
+    width: 30px;
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.imgIcon:hover
+{
+    cursor: pointer;
+}

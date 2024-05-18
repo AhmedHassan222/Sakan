@@ -6,7 +6,7 @@ function FilterProductsProvide(props) {
     const [expired, setExpired] = useState(true)
     const [userData, setuserData] = useState(null)
     const [type, settype] = useState("home")
-    const [language , setLanguage] = useState('Eng')
+    const [language , setLanguage] = useState('ع')
 
 
 

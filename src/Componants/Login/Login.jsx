@@ -4,8 +4,11 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { FilterProducts } from './../../Context/FilterProducts';
+import style from "../../Componants/Register/Register.module.css"
+import eye from "../../assets/images/eye.jpg"
+import not from "../../assets/images/not.jpg"
 export default function Login() {
-    let {language} = useContext(FilterProducts)
+    let { language } = useContext(FilterProducts)
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -17,6 +20,7 @@ export default function Login() {
     const [error, setError] = useState('')
     const [errorList, setErrorList] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+    const [viewPassword, setViewPassword] = useState(true);
 
     function getUserInfoLogin(e) {
         let _user = { ...user }
@@ -70,22 +74,29 @@ export default function Login() {
         </Helmet>
         <div className="d-flex justify-content-center align-items-center vh-100 w-100">
             <form onSubmit={submitLogin} action="" className={`  p-4`}>
+                {errorList.length > 0 ? <ul>
+                    {errorList.map((item, index) => <li className="text-danger" key={index}>{item.message}</li>)}
+
+                </ul> : ""}
                 <h3 className="mb-3 h4 ">  {language == 'ع' ? "Login " : " تسجيل الدخول"}</h3>
                 <div className="form-group my-3">
                     <input onChange={getUserInfoLogin} name="email" type="text" placeholder={language == 'ع' ? "Email " : "البريد الاللكتروني "} className="w-100 p-2 " />
+
                 </div>
                 <div className="form-group my-3">
-                    <input onChange={getUserInfoLogin} name="password" type="password" placeholder={language == 'ع' ? "Password " : " كلمة المرور"} className="w-100 p-2 " />
+                    <div className="position-relative">
+                        <input onChange={getUserInfoLogin} name="password" type="password" placeholder={language == 'ع' ? "Password " : " كلمة المرور"} className="w-100 p-2 " />
+                        {viewPassword ? <img onClick={() => { setViewPassword(false) }} className={`${style.imgIcon}  `} src={not} alt="" /> : <img onClick={() => { setViewPassword(true) }} className={`${style.imgIcon}`} src={eye} alt="" />}
+                    </div>
+
                 </div>
                 <div className=" mt-3">
                     {error ? <p className="text-danger">{error}</p> : ""}
                     <button type="submit" className="btn btn-primary rounded-0 w-100 "> {isLoading ? <div className="spinner-border " role="status">
                         <span className="visually-hidden  ">Loading...</span>
-                    </div> : language == 'ع' ? "Login" :"دخول"}</button>
+                    </div> : language == 'ع' ? "Login" : "دخول"}</button>
                 </div>
-                {errorList.length > 0 ? errorList.map((item, index) => <p key={index}>{item.message}</p>) : ""}
-                
-                {language == 'ع' ? <p className="mt-3">  I have not Accout <Link to={'/register'}> Create Accout</Link>  </p> :<p className="mt-3">ليس لدي حساب <Link to={'/register'}>انشاء حساب</Link>  </p>}
+                {language == 'ع' ? <p className="mt-3">  I have not Accout <Link to={'/register'}> Create Accout</Link>  </p> : <p className="mt-3">ليس لدي حساب <Link to={'/register'}>انشاء حساب</Link>  </p>}
             </form>
         </div>
     </>

@@ -23,7 +23,6 @@ export default function Nav() {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
-    console.log(language);
 
     useEffect(() => {
         if (scrollTop > 50) {
