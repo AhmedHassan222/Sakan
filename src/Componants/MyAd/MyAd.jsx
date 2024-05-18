@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import style from "../../Componants/GetProduts/GetProducts.module.css"
 import { useContext, useEffect, useState } from "react";
 import { FilterProducts } from './../../Context/FilterProducts';
@@ -9,21 +9,38 @@ export default function MyAd() {
 
     const [myAdv, setAdv] = useState([]);
     let { setExpired, expired, userData, setuserData, language } = useContext(FilterProducts)
-    console.log(userData);
-
+    const [id, setId] = useState({
+        productId: ""
+    })
+    let navigate = useNavigate()
     async function getMyAdv() {
         try {
             let { data } = await axios.get(`https://zunis-node-js.vercel.app/product/?createdBy=${userData._id}`)
             setAdv(data.data)
-
         } catch (error) {
             console.log(error);
         }
     }
 
+    async function deleteProperty(ItemId) {
+        id["productId"] = ItemId;
+        setId(id)
+        await axios.delete(`https://zunis-node-js.vercel.app/product/delete?productId=${ItemId}`, id)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+
+    function updateProperty(id, item) {
+        navigate(`/myzone`)
+    }
+
     useEffect(() => {
         getMyAdv()
-        console.log(myAdv);
     }, [])
 
 
@@ -35,8 +52,21 @@ export default function MyAd() {
 
 
 
-
         <div className="container py-5 ">
+            <div className="row g-3 justify-content-between my-5 alert alert-light ">
+                <h3 className="text-primary col-sm-12 col-md-12 col-lg-6 fw-bold">My Properties</h3>
+                <div className=" d-flex justify-content-center col-sm-12 col-md-12 col-lg-6">
+                    <Link className="d-flex justify-content-center nav-link " to={`/myzone/addProduct/65d8c2138bfd8107356010e2`}>
+                        <button className={` px-4 py-2 fw-bold  rounded-1 btn btn-primary mx-2`}>  {language == 'ع' ? "AddAppartment" : "اضف شقة"}</button>
+                    </Link>
+                    <Link className="d-flex justify-content-center nav-link  mx-2" to={`/myzone/addProduct/65d8c1c01269fe7a10558011`}>
+                        <button className={` px-4 py-2 fw-bold  rounded-1 btn btn-primary mx-2`}> {language == 'ع' ? "AddHome" : "اضف بيت"}</button>
+                    </Link>
+                    <Link className="d-flex justify-content-center nav-link " to={`/myzone/addProduct/65d8c23b1269fe7a1055818b`}>
+                        <button className={` px-4 py-2 fw-bold  rounded-1 btn btn-primary mx-2`}>   {language == 'ع' ? "AddLand" : "اضفة قطعة ارض"}</button>
+                    </Link>
+                </div>
+            </div>
             {myAdv.length <= 0 ? <h3>  {language == 'ع' ? "No Ads yet" : "لا توج اعلانات مضافة"}</h3> :
                 <div className="row py-5">
                     {myAdv?.map((item, index) => <div key={index} className={`col-sm-12 col-md-4 col-lg-4 ${style.box2} p-4`} >
@@ -69,52 +99,9 @@ export default function MyAd() {
                                 <i className="fa-solid fa-location-dot ms-2 "></i>
                                 <p className="">{item.location}</p>
                             </div>
-                            <div className="d-flex">
-                                <Link to={`/productdetails/${item.categoryId.slug}/${item._id}`}>
-                                    <button className={` px-4 py-2 fw-bold m-2  rounded-1 ${style.contactButton} `}>
-
-                                        {language == 'ع' ? `details` : 'التفاصيل'}
-                                    </button>
-                                </Link>
-                                <button type="button" className={` px-4 py-2 fw-bold m-2  rounded-1 ${style.contactButton} mx-2`} data-bs-toggle="modal" data-bs-target="#exampleModal">
-
-                                    {language == 'ع' ? `Phone` : 'اتصل'}
-                                </button>
-                                <button type="button" className={` px-4 py-2 fw-bold  m-2 rounded-1 ${style.contactButton} mx-2`} data-bs-toggle="modal" data-bs-target="#exampleModal">
-
-                                    {language == 'ع' ? `Mail` : 'الايميل'}
-                                </button>
-
-                                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div className="modal-dialog">
-                                        <div className="modal-content">
-                                            <div className="modal-header">
-                                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div className="modal-body">
-                                                <p>
-                                                    {language == 'ع' ? ` Phone : ${item.createdBy.phoneNumber}` : `رقم الهاتف: ${item.createdBy.phoneNumber}`}
-                                                </p>
-                                                <p>
-                                                    {language == 'ع' ? `Email : ${item.createdBy.email}` : `البريد الالكتروني : ${item.createdBy.email}`}
-
-
-                                                </p>
-                                            </div>
-                                            <div className="modal-footer">
-                                                <a href={`mailto:${item.createdBy.email}?subject=Subject line`}>
-                                                    <button type="button" className={` px-4 py-2 fw-bold  rounded-1 ${style.contactButton} mx-2`}>
-                                                        {language == 'ع' ? `Send Messange` : `ارسل رسالة`}
-
-                                                    </button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
+                            <div className="d-flex justify-content-center">
+                                <button onClick={() => updateProperty(item._id, item)} className="btn btn-primary mx-2 w-50">Update Property</button>
+                                <button onClick={() => deleteProperty(item._id)} className="btn btn-danger mx-2 w-50">Delete Property</button>
                             </div>
                         </div>
                     </div>)}
@@ -123,16 +110,6 @@ export default function MyAd() {
 
 
 
-        <div className=" d-flex justify-content-center my-5">
-            <Link className="d-flex justify-content-center nav-link my-4" to={`/myzone/addProduct/65d8c2138bfd8107356010e2`}>
-                <button className={` px-4 py-2 fw-bold  rounded-1 ${style.contactButton} mx-2`}>  {language == 'ع' ? "Add Appartment" : "اضف شقة"}</button>
-            </Link>
-            <Link className="d-flex justify-content-center nav-link my-4 mx-2" to={`/myzone/addProduct/65d8c1c01269fe7a10558011`}>
-                <button className={` px-4 py-2 fw-bold  rounded-1 ${style.contactButton} mx-2`}> {language == 'ع' ? "Add Home" : "اضف بيت"}</button>
-            </Link>
-            <Link className="d-flex justify-content-center nav-link my-4" to={`/myzone/addProduct/65d8c23b1269fe7a1055818b`}>
-                <button className={` px-4 py-2 fw-bold  rounded-1 ${style.contactButton} mx-2`}>   {language == 'ع' ? "Add Land" : "اضفة قطعة ارض"}</button>
-            </Link>
-        </div>
+
     </>
 }
