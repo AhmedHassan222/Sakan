@@ -85,8 +85,8 @@ export default function Login() {
                 </div>
                 <div className="form-group my-3">
                     <div className="position-relative">
-                        <input onChange={getUserInfoLogin} name="password" type="password" placeholder={language == 'ع' ? "Password " : " كلمة المرور"} className="w-100 p-2 " />
-                        {viewPassword ? <img onClick={() => { setViewPassword(false) }} className={`${style.imgIcon}  `} src={not} alt="" /> : <img onClick={() => { setViewPassword(true) }} className={`${style.imgIcon}`} src={eye} alt="" />}
+                        <input onChange={getUserInfoLogin} name="password" type={viewPassword == false ? "text" : "password"} placeholder={language == 'ع' ? "Password " : " كلمة المرور"} className="w-100 p-2 " />
+                        {viewPassword ? <img onClick={() => { setViewPassword(false) }} className={`${style.imgIcon}  `} src={not} alt="" style={language == 'ع' ? {right:"2%"}: {left:"2%"}} /> : <img onClick={() => { setViewPassword(true) }} className={`${style.imgIcon}`} src={eye} alt="" style={language == 'ع' ? {right:"2%"}: {left:"2%"}} />}
                     </div>
 
                 </div>

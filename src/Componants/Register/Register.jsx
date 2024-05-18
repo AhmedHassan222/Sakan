@@ -98,7 +98,7 @@ export default function Register() {
                     <div className="form-group my-3 ">
                         <div className="position-relative">
                             <input onChange={getUser} type={viewPassword == false ? "text" : "password"} name="password" placeholder={language == 'ع' ? `Password` : `كلمة المرور`} className="w-100 p-2 " />
-                            {viewPassword ? <img onClick={() => { setViewPassword(false) }} className={`${style.imgIcon}  `} src={not} alt="" /> : <img onClick={() => { setViewPassword(true) }} className={`${style.imgIcon}`} src={eye} alt="" />}
+                        {viewPassword ? <img onClick={() => { setViewPassword(false) }} className={`${style.imgIcon}  `} src={not} alt="" style={language == 'ع' ? {right:"2%"}: {left:"2%"}} /> : <img onClick={() => { setViewPassword(true) }} className={`${style.imgIcon}`} src={eye} alt="" style={language == 'ع' ? {right:"2%"}: {left:"2%"}} />}
                         </div>
 
 
@@ -106,7 +106,7 @@ export default function Register() {
                     <div className="form-group my-3 ">
                         <div className="position-relative">
                             <input onChange={getUser} type={viewPassword == false ? "text" : "password"} name="cpassword" placeholder={language == 'ع' ? `Confirm Password` : `تاكيد كلمة المرور`} className="w-100 p-2 " />
-                            {viewPassword ? <img onClick={() => { setViewPassword(false) }} className={`${style.imgIcon}  `} src={not} alt="" /> : <img onClick={() => { setViewPassword(true) }} className={`${style.imgIcon}`} src={eye} alt="" />}
+                        {viewPassword ? <img onClick={() => { setViewPassword(false) }} className={`${style.imgIcon}  `} src={not} alt="" style={language == 'ع' ? {right:"2%"}: {left:"2%"}} /> : <img onClick={() => { setViewPassword(true) }} className={`${style.imgIcon}`} src={eye} alt="" style={language == 'ع' ? {right:"2%"}: {left:"2%"}} />}
                         </div>
 
                     </div>
@@ -114,7 +114,7 @@ export default function Register() {
                         <input onChange={getUser} type="text" name="phoneNumber" placeholder={language == 'ع' ? `Phone number` : `رقم الهاتف`} className="w-100 p-2 " />
                     </div>
                     <select onChange={(getUser)} className="w-100 p-1 " name="typeOfUser">
-                        <option value="">{language == 'ع' ? `-- Type of Account --` : `-- نوع الحساب `}</option>
+                        <option value="">{language == 'ع' ? `-- Type of Account --` : `-- نوع الحساب --`}</option>
                         <option value="owner of real estate">{language == 'ع' ? `owner of property` : `صاحب عقار `}</option>
                         <option value="marketing company"> {language == 'ع' ? `Marketing Company` : `شركة تسويق عقاري `}</option>
                         <option value="other"> {language == 'ع' ? `Other` : `شيء اخر `}</option>
