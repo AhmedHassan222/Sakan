@@ -57,9 +57,9 @@ export default function Nav() {
                         <li className="nav-item  px-1">
                             <Link className={`nav-link ${style.linkHover}  fs-5 fw-bold `} aria-current="page" to="/">{language == 'ع' ? "Home" : "الصفحة الرئيسية "}</Link>
                         </li>
-                        <li className="nav-item  px-1 pt-2">
-                            <div className={`dropdown  fs-5   `}>
-                                <button className={`border-0 bg-transparent dropdown-toggle fw-bold ${style.linkHover}`} type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <li className={`nav-item  px-1 pt-1 ${style.wSM100}`}>
+                            <div className={`dropdown  fs-5   w-100`}>
+                                <button className={`border-0 w-100 text-start py-2 bg-transparent dropdown-toggle fw-bold ${style.linkHover}`} type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     {language == 'ع' ? "Properties" : " عقارات "}
                                 </button>
                                 <ul className="dropdown-menu">

@@ -7,7 +7,7 @@ import fakeImage from "../../assets/images/Annotation 2024-02-21 205940.png"
 
 export default function MyAd() {
     let {setElement } = useContext(FilterProducts)
-    const [myAdv, setAdv] = useState([]);
+    const [myAdv, setAdv] = useState(null);
     let { setExpired, expired, userData, setuserData, language } = useContext(FilterProducts)
     let navigate = useNavigate()
     async function getMyAdv() {
@@ -21,6 +21,7 @@ export default function MyAd() {
     async function deleteProperty(ItemId) {
         await axios.delete(`https://zunis-node-js.vercel.app/product/delete?productId=${ItemId}` , {
             headers: {
+                'Content-Type': 'multipart/form-data',
                 "token": `Ahmed__${localStorage.getItem("user")}`
             },
         })
@@ -66,7 +67,7 @@ export default function MyAd() {
                     </Link>
                 </div>
             </div>
-            {myAdv.length <= 0 ? <h3>  {language == 'ع' ? "No Ads yet" : "لا توج اعلانات مضافة"}</h3> :
+            {myAdv == null ? <h3>  {language == 'ع' ? "No Ads yet" : "لا توج اعلانات مضافة"}</h3> :
                 <div className="row py-5">
                     {myAdv?.map((item, index) => <div key={index} className={`col-sm-12 col-md-4 col-lg-4 ${style.box2} p-4`} >
                         <Link to={`/productdetails/${item.categoryId.slug}/${item._id}`}>

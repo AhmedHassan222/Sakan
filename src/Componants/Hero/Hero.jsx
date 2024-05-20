@@ -33,7 +33,7 @@ export default function Hero() {
     return <>
         <header className="  " style={{ backgroundImage: `URL(${heroImage}) ` }}>
             <div className={`${style.layer} h-100 `}>
-                <h3 className={`  fs-1 p-5 text-whithttp://localhost:3000/GraduationProject#/e`}>
+                <h3 className={` fs-3  fs-1 p-5 text-whithttp://localhost:3000/GraduationProject#/e`}>
                     {language == 'ع' ? `Find your perfect property with us ` : `ابحث عن افضل العقارات  معنا.`}
 
                 </h3>
