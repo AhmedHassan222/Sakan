@@ -17,6 +17,7 @@ import { useContext, useEffect } from "react";
 import { jwtDecode } from 'jwt-decode';
 import About from "./Componants/About/About";
 import Contacts from './Componants/Contact/Contact';
+import UpdateProperty from "./Componants/UpdateProperty/UpdateProperty";
 
 function App() {
   // decode token
@@ -44,12 +45,13 @@ function App() {
         { path: "productdetails/:name/:id", element: <ProductDetails /> },
         { path: "getProducts/:name/:id", element: <GetProducts /> },
         { path: "filter", element: <Filter /> },
-        { path: "myzone/:status/:id", element: <Myzone /> },
+        { path: "myzone/:id", element: <Myzone /> },
         { path: "myad", element: <MyAd /> },
         { path: "about", element: <About /> },
         { path: "contact", element: <Contacts /> },
         { path: "login", element: <Login /> },
         { path: "register", element: <Register /> },
+        { path: "updateProperty/:id", element: <UpdateProperty /> },
         { path: "*", element: <Notfound /> },
       ],
     },

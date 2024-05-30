@@ -11,8 +11,13 @@ function Choose() {
 
       <div className="container my-2">
         <div className="d-flex mb-5 align-items-center justify-content-between ">
-          <h3>لماذا تختارنا؟ </h3>
-          <h5>انا اءمل ان تحبنا </h5>
+          
+          <h3>  {language ==  'ع' ? "Why Choose Us?":"لماذا تقوم باختيارنا؟"}</h3>
+          
+
+          <h5>
+          {language ==  'ع' ? "I hope you love us":"انا اءمل ان تحبنا "}
+          </h5>
         </div>
         <div className="row gy-4">
           <div className="col-md-4 ">

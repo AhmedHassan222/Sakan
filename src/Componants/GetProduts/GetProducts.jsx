@@ -29,7 +29,7 @@ export default function GetProducts() {
             <div className="py-5">
                 <div className="d-flex justify-content-between">
                     <h3 className="h5"> {language == 'ع' ? `Explore best of Properties` : 'استكشف افضل العقارات'}</h3>
-                    <Link to={`/myzone/addProduct/${id}`}>
+                    <Link to={`/myzone/${id}`}>
                         <button className="btn btn-danger">{language == 'ع' ? `Add Advertisement` : 'اضف اعلانا'}</button>
                     </Link>
                 </div>

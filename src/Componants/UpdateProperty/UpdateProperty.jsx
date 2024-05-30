@@ -4,13 +4,14 @@ import Joi from "joi";
 import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { FilterProducts } from './../../Context/FilterProducts';
-export default function Myzone() {
+export default function UpdateProperty() {
     //V A R I A B L E S >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     let { language } = useContext(FilterProducts)
     let { id } = useParams();
     const [error, setError] = useState(null)
-    const [propertyDesc, SetPropertyDesc] = useState({ size: 0, view: "", yearOfConstruction: 0, bathrooms: 0, bedrooms: 0, finishingType: "", shahrAqary: "", floor: 0 })
-    const [item, setItem] = useState({ title: "", caption: " ", section: "", location: "", descLocation: "", PaymentMethod: "", image: [] })
+    let { element } = useContext(FilterProducts)
+    const [propertyDesc, SetPropertyDesc] = useState({size: element.propertyDesc.size, view: element.propertyDesc.view, yearOfConstruction: element.propertyDesc.yearOfConstruction, bathrooms: element.propertyDesc.bathrooms, bedrooms: element.propertyDesc.bedrooms, finishingType: element.propertyDesc.finishingType, shahrAqary: element.propertyDesc.shahrAqary, floor: element.propertyDesc.floor })
+    const [item, setItem] = useState({ title: element.title, caption: element.caption, section: element.section, location: element.location, descLocation: element.descLocation, PaymentMethod: element.PaymentMethod, image: element.Images })
     const [letters, setLetters] = useState(0)
     const [images, setImages] = useState([]);
     const [title, setTitle] = useState('')
@@ -83,19 +84,22 @@ export default function Myzone() {
         return (schema.validate(item, propertyDesc, { abortEarly: true }))
     }
     async function sendData() {
-        await axios.post(`https://zunis-node-js.vercel.app/product/create?categoryId=${id}`, formDataToSend, {
+        setIsLoading(true)
+        await axios.put(`https://zunis-node-js.vercel.app/product/delete?productId=${id}`, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 "token": `Ahmed__${localStorage.getItem("user")}`
             },
-        }).then((response) => {
-            window.scroll(0, 0)
-            navigate("/myad")
-            setIsLoading(false)
-        }).catch((error) => {
-            setError(error.message);
-            setIsLoading(false)
-        });
+        })
+            .then(response => {
+                console.log(response.data);
+                setIsLoading(false)
+                navigate("/myad")
+            })
+            .catch(error => {
+                console.error(error);
+                setIsLoading(false)
+            });
     }
     function submitForm(e) {
         e.preventDefault()
@@ -124,6 +128,9 @@ export default function Myzone() {
             sendData();
         }
     }
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
     // R E N D E R     C O D E   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     return <>
         <Helmet>
@@ -135,7 +142,8 @@ export default function Myzone() {
                     <form onSubmit={submitForm} className={`w-100 p-5 border-0`} action="" encType='multibart/form-data'>
                         <div className="form-group my-4">
                             <label htmlFor="file" className="mb-3"> {language == 'ع' ? "Select images" : "اختر مجموعة صور"}</label>
-                            <input multiple onChange={handleImageChange} id="file" type="file" className="w-100 p-2 " name='image' />
+                            <input multiple onChange={handleImageChange} id="file" type="file" className="w-100 p-2 " name='image'  />
+                            <span>{element.Images.length} Files</span>
                         </div>
                         <div className="form-group my-4">
                             <label htmlFor="section" className="mb-3">  {language == 'ع' ? "Select Process*" : "اختار العملية *"} </label>
@@ -164,7 +172,7 @@ export default function Myzone() {
                         </div>
                         <div className="form-group my-4">
                             <label htmlFor="desLocation" className="mb-3">   {language == 'ع' ? "Address in details*" : "العنوان بالتفاصيل  *"}</label>
-                            <input onChange={getItem} id="desLocation" type="text" className="w-100 p-2  " name='descLocation' />
+                            <input onChange={getItem} id="desLocation" type="text" className="w-100 p-2  " name='descLocation' value={item.descLocation} />
                         </div>
                         <div className="form-group my-4">
                             <label htmlFor="size" className="mb-3">   {language == 'ع' ? "Size of property*" : " مساحة العقار بالمتر المربع *"}</label>
@@ -219,7 +227,7 @@ export default function Myzone() {
                             </select>
                         </div>
                         <div className=" p-2 d-flex justify-content-end">
-                            <button type="submit" className="btn btn-primary px-5">{isLoading ? <i className="fa fa-spin fa-spinner"></i> : language == 'ع' ? "Add" : "اضف"}</button>
+                            <button type="submit" className="btn btn-primary px-5">{isLoading ? <i className="fa fa-spin fa-spinner"></i> : language == 'ع' ? "Update" : "اضف"}</button>
                         </div>
                         <h3 className="h5 text-danger py-4 ">{error}</h3>
                         {errorList.length > 0 ? <ul>

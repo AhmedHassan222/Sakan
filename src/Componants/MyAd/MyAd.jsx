@@ -38,8 +38,12 @@ export default function MyAd() {
     }
     function updateProperty(itemId, item) {
         setElement(item);
-        navigate(`/myzone/addProduct/${itemId}`)
+        navigate(`/updateProperty/${itemId}`)
     }
+    useEffect(() => {
+        getMyAdv()
+        window.scroll(0, 0)
+    }, [])
     useEffect(() => {
         getMyAdv()
     }, [myAdv])
@@ -48,13 +52,13 @@ export default function MyAd() {
             <div className="row g-3 justify-content-between my-5 alert alert-light ">
                 <h3 className="text-primary col-sm-12 col-md-12 col-lg-6 fw-bold">My Properties</h3>
                 <div className=" d-flex justify-content-center col-sm-12 col-md-12 col-lg-6">
-                    <Link className="d-flex justify-content-center nav-link " to={`/myzone/addProduct/65d8c2138bfd8107356010e2`}>
+                    <Link className="d-flex justify-content-center nav-link " to={`/myzone/65d8c2138bfd8107356010e2`}>
                         <button className={` px-4 py-2 fw-bold  rounded-1 btn btn-primary mx-2`}>  {language == 'ع' ? "AddAppartment" : "اضف شقة"}</button>
                     </Link>
-                    <Link className="d-flex justify-content-center nav-link  mx-2" to={`/myzone/addProduct/65d8c1c01269fe7a10558011`}>
+                    <Link className="d-flex justify-content-center nav-link  mx-2" to={`/myzone/65d8c1c01269fe7a10558011`}>
                         <button className={` px-4 py-2 fw-bold  rounded-1 btn btn-primary mx-2`}> {language == 'ع' ? "AddHome" : "اضف بيت"}</button>
                     </Link>
-                    <Link className="d-flex justify-content-center nav-link " to={`/myzone/addProduct/65d8c23b1269fe7a1055818b`}>
+                    <Link className="d-flex justify-content-center nav-link " to={`/myzone/65d8c23b1269fe7a1055818b`}>
                         <button className={` px-4 py-2 fw-bold  rounded-1 btn btn-primary mx-2`}>   {language == 'ع' ? "AddLand" : "اضفة قطعة ارض"}</button>
                     </Link>
                 </div>
@@ -93,7 +97,7 @@ export default function MyAd() {
                             </div>
                             <div className="d-flex justify-content-center">
                                 <button onClick={() => updateProperty(item._id, item)} className="btn btn-primary mx-2 w-50">Update Property</button>
-                                <button onClick={() => deleteProperty(item._id)} className="btn btn-danger mx-2 w-50">{isLoading ? <i className="fa fa-spin fa-spinner"></i>: "Delete Property"}</button>
+                                <button onClick={() => deleteProperty(item._id)} className="btn btn-danger mx-2 w-50">{isLoading ? <i className="fa fa-spin fa-spinner"></i> : "Delete Property"}</button>
                             </div>
                         </div>
                     </div>)}

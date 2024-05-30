@@ -43,9 +43,7 @@ export default function Footer() {
                         <div>
                             <h4 className="fw-bolder mb-4">  {language == 'ع' ?`About Us`:'عننا'}</h4>
                             <p className="text-muted">
-                                هي شركة تجارية تقوم ببيع وتأجير وإستئجار وإدارة محفظة من العقارات. يمكن أن تتكون المحفظة الإستثمارية للشركة العقارية من أي أرض أو عقار (تجاري، صناعي، تشغيلي، سكني).                            </p>
-
-                            {/* <p className="text-muted"></p> */}
+                                {language == 'ع' ? "It is a commercial company that sells, rents, leases and manages a portfolio of real estate. The real estate company's investment portfolio can consist of any land or property (commercial, industrial, operational, residential).":"هي شركة تجارية تقوم ببيع وتأجير وإستئجار وإدارة محفظة من العقارات. يمكن أن تتكون المحفظة الإستثمارية للشركة العقارية من أي أرض أو عقار (تجاري، صناعي، تشغيلي، سكني). "}</p>
                         </div>
                     </div>
                 </div>
