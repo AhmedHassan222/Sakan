@@ -97,8 +97,8 @@ export default function GetProducts() {
                                     {language == 'ع' ? `Mail` : 'الايميل'}
                                 </button>
 
-                                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div className="modal-dialog">
+                                <div className="modal fade my-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div className="modal-dialog my-5">
                                         <div className="modal-content">
                                             <div className="modal-header">
                                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

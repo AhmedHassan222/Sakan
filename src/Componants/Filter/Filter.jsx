@@ -8,12 +8,15 @@ export default function Filter() {
   // variables    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   let { price, wordSearch, setPrice, setWordSearch, type, settype, language } = useContext(FilterProducts)
   const [searched, setsearched] = useState([]);
+  let [isLoading, setIsLoading] = useState(false)
   //function search    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   async function searchProduct() {
+    setIsLoading(true)
     let { data } = await axios.get(
       `https://zunis-node-js.vercel.app/product/${type}?page=1&price[lt]=${price}&search=${wordSearch}`
     );
     setsearched(data.data);
+    setIsLoading(false)
   }
   // use  effect    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   useEffect(() => {
@@ -109,10 +112,8 @@ export default function Filter() {
                   </select>
                   <button
                     onClick={searchProduct}
-                    className=" btn mx-1 btn-danger px-4"
-                  >
-                    {language == 'ع' ? "Search " : "     بحث"}
-
+                    className=" btn mx-1 btn-danger px-4">
+                    {isLoading ? <i className="fa fa-spinner fa-spin"></i> :  language == 'ع' ? "Search " : "     بحث"}
                   </button>
                 </div>
               </div>

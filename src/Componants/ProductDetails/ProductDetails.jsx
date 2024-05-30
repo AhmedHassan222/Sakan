@@ -8,25 +8,8 @@ import { FilterProducts } from './../../Context/FilterProducts';
 
 export default function ProductDetails() {
     let { name, id } = useParams();
-    const [now, setNow] = useState(0)
     const [product, setProduct] = useState([]);
     let { language } = useContext(FilterProducts)
-    function slideLeft(length) {
-        // if (now == 0 ){setNow(length-1) else if(setNow(now--))}
-        if (now <= 0)
-            setNow(length - 1);
-        if (now > 0 && now < length)
-            setNow(now - 1)
-        console.log(now)
-    }
-    function slideRight(length) {
-        // if (now >= length - 1){setNow(0)} else if(now > 0 && now < length)
-        if (now >= length - 1)
-            setNow(0)
-        if (now >= 0 && now < length - 1)
-            setNow(now + 1)
-        console.log(now)
-    }
     async function getProduct() {
         const { data } = await axios.get(`https://zunis-node-js.vercel.app/product/${name}/${id}`);
         setProduct(data.products)
@@ -74,12 +57,6 @@ export default function ProductDetails() {
                     </div>
                 </div> : <div className="row g-4">
                     <div className="col-12 col-sm-12 col-md-6 col-lg-6 position-relative overflow-hidden">
-                        {/* <div className={`${style.boxImage}`}>
-                            <img src={product.Images[now].secure_url} className="  w-100 " alt="" />
-                        </div>
-                        <i onClick={() => { slideLeft(product.Images.length) }} className={`fa-solid fa-chevron-left position-absolute fs-6 p-2 rounded-circle text-white ${style.start}`}></i>
-                        <i onClick={() => { slideRight(product.Images.length) }} className={`fa-solid fa-chevron-right position-absolute fs-6 p-2 rounded-circle text-white ${style.end}`}></i>
-                     */}
                         <div className={`${style.box}  d-flex overflow-x-scroll ${style.scroly}`}>
                             {product.Images.map((item, index) => <img key={index} src={item.secure_url} className="  w-100 " alt="" />)}
                         </div>
@@ -119,8 +96,8 @@ export default function ProductDetails() {
                                 {language == 'ع' ? `Mail` : 'الايميل'}
                             </button>
 
-                            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div className="modal-dialog">
+                            <div className="modal fade my-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div className="modal-dialog my-5">
                                     <div className="modal-content">
                                         <div className="modal-header">
                                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

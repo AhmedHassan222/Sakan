@@ -5,9 +5,11 @@ import fakeImage from "../../assets/images/Annotation 2024-02-21 205940.png"
 import { Link } from "react-router-dom";
 import { FilterProducts } from './../../Context/FilterProducts';
 export default function Products() {
+
     let arr = [1, 2, 3];
     let {language} = useContext(FilterProducts)
     const [Products, setProducts] = useState([])
+
     async function getProducts() {
         const { data } = await axios.get('https://zunis-node-js.vercel.app/product/?page=1');
         setProducts(data.data)
@@ -21,7 +23,7 @@ export default function Products() {
 
     return <>
         <div className="container py-5">
-            <h3 className="text-center "> استكشف بعض العقارات </h3>
+            <h3 className="text-center ">{language == 'ع' ? "Explore some Properties":"استكشف بعض العقارات"}</h3>
             <div className="row mt-5 g-0">
                 {Products.length <= 0 ? arr.map((item, index) => <div key={index} className={`col-sm-12 col-md-6 col-lg-4 p-4 ${style.box}`} >
                     <img src={fakeImage} className="card-img-top rounded-0 w-100" alt="..." />
@@ -86,8 +88,8 @@ export default function Products() {
                                 {language == 'ع' ? `Mail` : 'الايميل'}
                             </button>
 
-                            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div className="modal-dialog">
+                            <div className="modal fade my-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div className="modal-dialog my-5">
                                     <div className="modal-content">
                                         <div className="modal-header">
                                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
