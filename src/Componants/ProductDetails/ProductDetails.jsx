@@ -73,12 +73,16 @@ export default function ProductDetails() {
                         </div>
                     </div>
                 </div> : <div className="row g-4">
-                    <div className="col-12 col-sm-12 col-md-6 col-lg-6 position-relative">
-                        <div className={`${style.boxImage}`}>
+                    <div className="col-12 col-sm-12 col-md-6 col-lg-6 position-relative overflow-hidden">
+                        {/* <div className={`${style.boxImage}`}>
                             <img src={product.Images[now].secure_url} className="  w-100 " alt="" />
                         </div>
                         <i onClick={() => { slideLeft(product.Images.length) }} className={`fa-solid fa-chevron-left position-absolute fs-6 p-2 rounded-circle text-white ${style.start}`}></i>
                         <i onClick={() => { slideRight(product.Images.length) }} className={`fa-solid fa-chevron-right position-absolute fs-6 p-2 rounded-circle text-white ${style.end}`}></i>
+                     */}
+                        <div className={`${style.box}  d-flex overflow-x-scroll ${style.scroly}`}>
+                            {product.Images.map((item, index) => <img key={index} src={item.secure_url} className="  w-100 " alt="" />)}
+                        </div>
                     </div>
                     <div className="col-sm-12 col-md-6 col-lg-6">
                         <h3>
