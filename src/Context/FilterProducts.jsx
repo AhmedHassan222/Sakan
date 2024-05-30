@@ -1,4 +1,4 @@
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 export let FilterProducts = createContext(0)
 function FilterProductsProvide(props) {
     const [price, setPrice] = useState(0);
@@ -6,8 +6,17 @@ function FilterProductsProvide(props) {
     const [expired, setExpired] = useState(true)
     const [userData, setuserData] = useState(null)
     const [type, settype] = useState("home")
-    const [language , setLanguage] = useState('ع')
     const [element, setElement] = useState(null)
+
+    function typeLanguage(){
+        return localStorage.getItem('language') != null ? localStorage.getItem('language') : ('ع')
+    }
+
+    const [language , setLanguage] = useState(typeLanguage())
+
+    useEffect(()=>{
+        localStorage.setItem('language',language)
+    },[language])
 
 
 

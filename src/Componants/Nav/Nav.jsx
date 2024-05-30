@@ -14,6 +14,7 @@ export default function Nav() {
     const [scrollTop, setScrollTop] = useState(0);
 
     useEffect(() => {
+
         const handleScroll = () => {
             setScrollTop(window.pageYOffset);
         };

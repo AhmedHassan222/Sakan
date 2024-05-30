@@ -104,9 +104,8 @@ export default function Register() {
 
                     </div>
                     <div className="form-group my-3 ">
-                        <div className="position-relative">
+                        <div >
                             <input onChange={getUser} type={viewPassword == false ? "text" : "password"} name="cpassword" placeholder={language == 'ع' ? `Confirm Password` : `تاكيد كلمة المرور`} className="w-100 p-2 " />
-                        {viewPassword ? <img onClick={() => { setViewPassword(false) }} className={`${style.imgIcon}  `} src={not} alt="" style={language == 'ع' ? {right:"2%"}: {left:"2%"}} /> : <img onClick={() => { setViewPassword(true) }} className={`${style.imgIcon}`} src={eye} alt="" style={language == 'ع' ? {right:"2%"}: {left:"2%"}} />}
                         </div>
 
                     </div>

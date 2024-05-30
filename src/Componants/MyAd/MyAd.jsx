@@ -6,9 +6,10 @@ import axios from "axios";
 import fakeImage from "../../assets/images/Annotation 2024-02-21 205940.png"
 
 export default function MyAd() {
-    let {setElement } = useContext(FilterProducts)
+    let { setElement } = useContext(FilterProducts)
     const [myAdv, setAdv] = useState(null);
     let { setExpired, expired, userData, setuserData, language } = useContext(FilterProducts)
+    let [isLoading, setIsLoading] = useState(false)
     let navigate = useNavigate()
     async function getMyAdv() {
         try {
@@ -19,7 +20,8 @@ export default function MyAd() {
         }
     }
     async function deleteProperty(ItemId) {
-        await axios.delete(`https://zunis-node-js.vercel.app/product/delete?productId=${ItemId}` , {
+        setIsLoading(true)
+        await axios.delete(`https://zunis-node-js.vercel.app/product/delete?productId=${ItemId}`, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 "token": `Ahmed__${localStorage.getItem("user")}`
@@ -27,31 +29,21 @@ export default function MyAd() {
         })
             .then(response => {
                 console.log(response.data);
+                setIsLoading(false)
             })
             .catch(error => {
                 console.error(error);
+                setIsLoading(false)
             });
     }
-
-
-    function updateProperty(itemId , item) {
+    function updateProperty(itemId, item) {
         setElement(item);
         navigate(`/myzone/addProduct/${itemId}`)
     }
-
     useEffect(() => {
         getMyAdv()
-    }, [])
-
-
-
-
-
-
+    }, [myAdv])
     return <>
-
-
-
         <div className="container py-5 ">
             <div className="row g-3 justify-content-between my-5 alert alert-light ">
                 <h3 className="text-primary col-sm-12 col-md-12 col-lg-6 fw-bold">My Properties</h3>
@@ -101,7 +93,7 @@ export default function MyAd() {
                             </div>
                             <div className="d-flex justify-content-center">
                                 <button onClick={() => updateProperty(item._id, item)} className="btn btn-primary mx-2 w-50">Update Property</button>
-                                <button onClick={() => deleteProperty(item._id)} className="btn btn-danger mx-2 w-50">Delete Property</button>
+                                <button onClick={() => deleteProperty(item._id)} className="btn btn-danger mx-2 w-50">{isLoading ? <i className="fa fa-spin fa-spinner"></i>: "Delete Property"}</button>
                             </div>
                         </div>
                     </div>)}
