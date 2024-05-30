@@ -6,21 +6,25 @@ function FilterProductsProvide(props) {
     const [expired, setExpired] = useState(true)
     const [userData, setuserData] = useState(null)
     const [type, settype] = useState("home")
-    const [element, setElement] = useState(null)
 
-    function typeLanguage(){
+    function typeLanguage() {
         return localStorage.getItem('language') != null ? localStorage.getItem('language') : ('ع')
     }
+    function putElement() {
+        return localStorage.getItem('element') != null ? localStorage.getItem('element') : (null)
+    }
 
-    const [language , setLanguage] = useState(typeLanguage())
+    const [language, setLanguage] = useState(typeLanguage())
+    const [element, setElement] = useState(putElement())
 
-    useEffect(()=>{
-        localStorage.setItem('language',language)
-    },[language])
+    useEffect(() => {
+        localStorage.setItem('language', language)
+        localStorage.setItem('element', element)
+    }, [language, element])
 
 
 
-    return <FilterProducts.Provider value={{element, setElement , language , setLanguage, price, type, settype, userData, setuserData, expired, setExpired, wordSearch, setPrice, setWordSearch }}>
+    return <FilterProducts.Provider value={{ element, setElement, language, setLanguage, price, type, settype, userData, setuserData, expired, setExpired, wordSearch, setPrice, setWordSearch }}>
         {props.children}
     </FilterProducts.Provider>
 }
