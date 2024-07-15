@@ -19,9 +19,9 @@ export default function Message() {
     }, [messages.length])
     return <>
         <div>
-            <div className="container-message  container py-5">
+            <div className="container-message  container py-5 ">
 
-                <section className="page-message p-5  messages">
+                <section className="page-message p-5  messages rounded-3">
                     <h3 className='mb-4'>{language === 'ع' ? "Messages box" : "  صندوق الرسائل "}</h3>
                     <div className="banner ">
                         {messages?.length > 0 ? (

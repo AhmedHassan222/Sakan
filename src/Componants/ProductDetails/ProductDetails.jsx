@@ -13,7 +13,7 @@ export default function ProductDetails() {
     
     useEffect(() => {
         window.scroll(0, 0)
-    }, );
+    }, []);
     useEffect(() => {
         async function getProduct() {
             const { data } = await axios.get(`https://zunis-node-js.vercel.app/product/${name}/${id}`);

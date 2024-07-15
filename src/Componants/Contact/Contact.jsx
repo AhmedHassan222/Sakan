@@ -129,7 +129,7 @@ function Contacts() {
                                     {error ? <p className="text-danger">{error}</p> : ""}
                                     {reMessage ? <p className="text-success h4 fw-bolder  ">{reMessage}</p> : ""}
 
-                                    <button className={` w-100 mt-3  btn btn-primary`}> {isLoading ? <div className="spinner-border " role="status">
+                                    <button className={` w-100 mt-3 p-2  btn btn-outline-primary`}> {isLoading ? <div className="spinner-border " role="status">
                                         <span className="visually-hidden  ">Loading...</span>
                                     </div> : language === 'ع' ? "Send now  " : "   ارسل الان   "}</button>
                                 </div>

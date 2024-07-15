@@ -88,8 +88,8 @@ export default function Nav() {
                         </li>
                         <li className="nav-item mt-2 text-center px-1">
                             {localStorage.getItem('user') !== null ? <Link onClick={changeMessageNumber} to="/message" className="navbar-icon mx-2 navbar-cart-icon">
-                                <i className="fa-solid fa-message"></i>
-                                <div className="cart-items fw-bolder">{messages ? messages.length : 0}</div>
+                                <i className="fa-solid fa-message nav-link "></i>
+                                <div className="cart-items fw-bolder bg-danger">{messages ? messages.length : 0}</div>
                             </Link> : ""}
                         </li>
                         {language === 'ع' ? <li onClick={() => { setLanguage('Eng') }} className={`nav-item  px-1`}>
