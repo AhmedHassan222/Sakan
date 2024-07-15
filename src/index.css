@@ -143,3 +143,8 @@ margin-top: 20px;
 .messages .banner .card div p span {
   font-weight: 500;
 }
+
+.fit-content 
+{
+  width: fit-content;
+}

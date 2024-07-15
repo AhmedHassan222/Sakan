@@ -47,17 +47,17 @@ export default function MyAd() {
     }, [myAdv])
     return <>
         <div className="container py-5 ">
-            <div className="row g-3 justify-content-between my-5 alert alert-light ">
+            <div className="row g-3 justify-content-between my-5 bg-light py-4 rounded-3 ">
                 <h3 className="text-primary col-sm-12 col-md-12 col-lg-6 fw-bold">My Properties</h3>
-                <div className=" d-flex justify-content-center col-sm-12 col-md-12 col-lg-6">
+                <div className=" d-flex justify-content-center col-sm-12 col-md-12 col-lg-6  fit-content">
                     <Link className="d-flex justify-content-center nav-link " to={`/myzone/65d8c2138bfd8107356010e2`}>
-                        <button className={` px-4 py-2 fw-bold  rounded-1 btn btn-primary mx-2`}>  {language === 'ع' ? "Add Appartment" : "اضف شقة"}</button>
+                        <button className={` p-2 fw-bold  rounded-1 btn btn-primary mx-1`}>  {language === 'ع' ? "Add Appartment" : "اضف شقة"}</button>
                     </Link>
-                    <Link className="d-flex justify-content-center nav-link  mx-2" to={`/myzone/65d8c1c01269fe7a10558011`}>
-                        <button className={` px-4 py-2 fw-bold  rounded-1 btn btn-primary mx-2`}> {language === 'ع' ? "Add Home" : "اضف بيت"}</button>
+                    <Link className="d-flex justify-content-center nav-link  mx-1" to={`/myzone/65d8c1c01269fe7a10558011`}>
+                        <button className={` p-2 fw-bold  rounded-1 btn btn-primary mx-1`}> {language === 'ع' ? "Add Home" : "اضف بيت"}</button>
                     </Link>
                     <Link className="d-flex justify-content-center nav-link " to={`/myzone/65d8c23b1269fe7a1055818b`}>
-                        <button className={` px-4 py-2 fw-bold  rounded-1 btn btn-primary mx-2`}>   {language === 'ع' ? "Add Land" : "اضفة قطعة ارض"}</button>
+                        <button className={` p-2 fw-bold  rounded-1 btn btn-primary mx-1`}>   {language === 'ع' ? "Add Land" : "اضفة قطعة ارض"}</button>
                     </Link>
                 </div>
             </div>
