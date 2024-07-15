@@ -28,7 +28,7 @@ export default function Filter() {
   return (
     <>
       <Helmet>
-        <title> {language == 'ع' ? "Filter - Sakan   " : "    بحث عن شيء معين - سكن  "}</title>
+        <title> {language === 'ع' ? "Filter - Sakan   " : "    بحث عن شيء معين - سكن  "}</title>
       </Helmet>
       {/*  F I L T E R     N A V    H E R E >>>>>>>>>>>>>>> */}
       <div className="container py-5 ">
@@ -39,7 +39,7 @@ export default function Filter() {
                 <input
                   type="text"
                   value={wordSearch}
-                  placeholder={language == 'ع' ? "Enter Location" : "     ادخل الموقع"}
+                  placeholder={language === 'ع' ? "Enter Location" : "     ادخل الموقع"}
                   className="p-2 w-100 "
                   onChange={(e) => { setWordSearch(e.target.value) }}
                 />
@@ -55,28 +55,16 @@ export default function Filter() {
                     value={type}
                   >
                     <option value={"....."}>
-                      <a className="dropdown-item" href="#">
-                        {language == 'ع' ? `Type property` : `نوع العقار`}
-
-                      </a>
+                      {language === 'ع' ? `Type property` : `نوع العقار`}
                     </option>
                     <option value={"home"}>
-                      <a className="dropdown-item" href="#">
-
-                        {language == 'ع' ? `Homes` : `منازل`}
-                      </a>
+                      {language === 'ع' ? `Homes` : `منازل`}
                     </option>
                     <option value={"appartment"}>
-                      <a className="dropdown-item" href="#">
-
-                        {language == 'ع' ? `Appartments` : `شقق`}
-                      </a>
+                      {language === 'ع' ? `Appartments` : `شقق`}
                     </option>
                     <option value={"land"}>
-                      <a className="dropdown-item" href="#">
-
-                        {language == 'ع' ? `Lands` : `اراضي`}
-                      </a>
+                      {language === 'ع' ? `Lands` : `اراضي`}
                     </option>
                   </select>
                   <select
@@ -89,31 +77,31 @@ export default function Filter() {
                   >
                     <option value={"....."}>
 
-                      {language == 'ع' ? `Price in EGP` : `السعر (ج.م)`}
+                      {language === 'ع' ? `Price in EGP` : `السعر (ج.م)`}
                     </option>
                     <option value={"1000000"}>
-                      {language == 'ع' ? "less than 1 million " : "  اقل من مليون جنية"}
+                      {language === 'ع' ? "less than 1 million " : "  اقل من مليون جنية"}
                     </option>
                     <option value={"2000000"}>
-                      {language == 'ع' ? "less than 2 millions " : "  اقل من 2 مليون جنية"}
+                      {language === 'ع' ? "less than 2 millions " : "  اقل من 2 مليون جنية"}
                     </option>
                     <option value={"3000000"}>
-                      {language == 'ع' ? "less than 3 millions " : "  اقل من 3 مليون جنية"}
+                      {language === 'ع' ? "less than 3 millions " : "  اقل من 3 مليون جنية"}
                     </option>
                     <option value={"4000000"}>
-                      {language == 'ع' ? "less than 4 millions " : "  اقل من 4 مليون جنية"}
+                      {language === 'ع' ? "less than 4 millions " : "  اقل من 4 مليون جنية"}
                     </option>
                     <option value={"5000000"}>
-                      {language == 'ع' ? "less than 5 millions " : "  اقل من 5 مليون جنية"}
+                      {language === 'ع' ? "less than 5 millions " : "  اقل من 5 مليون جنية"}
                     </option>
                     <option value={"6000000"}>
-                      {language == 'ع' ? "less than 6 millions " : "  اقل من 6 مليون جنية"}
+                      {language === 'ع' ? "less than 6 millions " : "  اقل من 6 مليون جنية"}
                     </option>
                   </select>
                   <button
                     onClick={searchProduct}
                     className=" btn mx-1 btn-danger px-4">
-                    {isLoading ? <i className="fa fa-spinner fa-spin"></i> :  language == 'ع' ? "Search " : "     بحث"}
+                    {isLoading ? <i className="fa fa-spinner fa-spin"></i> : language === 'ع' ? "Search " : "     بحث"}
                   </button>
                 </div>
               </div>
@@ -124,7 +112,7 @@ export default function Filter() {
         <div className="row mt-5 g-0">
           {!Array.isArray(searched) ? (
             <div className="vh-100 d-flex align-items-center  justify-content-center ">
-              <h3 className="h5">                    {language == 'ع' ? "No Items  " : "     لا يوجد عناصر مطابقة لبحثك"}</h3>
+              <h3 className="h5">                    {language === 'ع' ? "No Items  " : "     لا يوجد عناصر مطابقة لبحثك"}</h3>
             </div>
           ) : searched.map((item, index) => (
             <div
@@ -143,7 +131,7 @@ export default function Filter() {
                 </div>
               </Link>
               <div>
-                <h3 className=" fw-bold mt-4 "> {language == 'ع' ? `${item.price} EGP` : `${item.price} ج.م `}</h3>
+                <h3 className=" fw-bold mt-4 "> {language === 'ع' ? `${item.price} EGP` : `${item.price} ج.م `}</h3>
                 <p className="fw-bold fs-5">{item.title.slice(0, 55)} </p>
                 <div className="d-flex">
                   <div className="d-flex">
@@ -156,7 +144,7 @@ export default function Filter() {
                   </div>
                 </div>
                 <p className="">
-                  {language == 'ع' ? `Area : {item.propertyDesc.size} m2` : `المساحة: ${item.propertyDesc.size} متر مربع`}
+                  {language === 'ع' ? `Area : {item.propertyDesc.size} m2` : `المساحة: ${item.propertyDesc.size} متر مربع`}
 
                 </p>
                 <div className="d-flex ">
@@ -170,21 +158,21 @@ export default function Filter() {
                     <button
                       className={` px-4 py-2 fw-bold  rounded-1 ${style.contactButton} `}
                     >
-                      {language == 'ع' ? `details` : 'التفاصيل'}
+                      {language === 'ع' ? `details` : 'التفاصيل'}
 
                     </button>
                   </Link>
                   <button
                     className={` px-4 py-2 fw-bold  rounded-1 ${style.contactButton} mx-1`}
                   >
-                    {language == 'ع' ? `Call` : 'اتصل'}
+                    {language === 'ع' ? `Call` : 'اتصل'}
 
 
                   </button>
                   <button
                     className={` px-4 py-2 fw-bold  rounded-1 ${style.contactButton} `}
                   >
-                    {language == 'ع' ? `Mail` : 'الايميل'}
+                    {language === 'ع' ? `Mail` : 'الايميل'}
 
                   </button>
                 </div>

@@ -23,14 +23,14 @@ export default function GetProducts() {
     }, [itemsList.length, name])
     return <>
         <Helmet>
-            <title>  {language == 'ع' ? `All properties - Sakan` : 'استكشف بعض العقارات - سكن'}</title>
+            <title>  {language === 'ع' ? `All properties - Sakan` : 'استكشف بعض العقارات - سكن'}</title>
         </Helmet>
         <div className="container py-5">
             <div className="py-5">
                 <div className="d-flex justify-content-between">
-                    <h3 className="h5"> {language == 'ع' ? `Explore best of Properties` : 'استكشف افضل العقارات'}</h3>
+                    <h3 className="h5"> {language === 'ع' ? `Explore best of Properties` : 'استكشف افضل العقارات'}</h3>
                     <Link to={`/myzone/${id}`}>
-                        <button className="btn btn-danger">{language == 'ع' ? `Add Advertisement` : 'اضف اعلانا'}</button>
+                        <button className="btn btn-danger">{language === 'ع' ? `Add Advertisement` : 'اضف اعلانا'}</button>
                     </Link>
                 </div>
                 <div className="row mt-5 g-0">
@@ -61,7 +61,7 @@ export default function GetProducts() {
                             </div>                    </Link>
                         <div >
                             <h3 className=" fw-bold mt-4 "> 
-                                {language == 'ع' ? `${item.price} EGP` : `${item.price} ج.م`}
+                                {language === 'ع' ? `${item.price} EGP` : `${item.price} ج.م`}
 
                             </h3>
                             <p className="fw-bold fs-5">{item.title.slice(0, 55)}  </p>
@@ -76,7 +76,7 @@ export default function GetProducts() {
                                 </div>
                             </div>
                             <p className="">
-                                {language == 'ع' ? `Area : ${item.propertyDesc.size} m2` : `المساحة: ${item.propertyDesc.size} متر مربع `}</p>
+                                {language === 'ع' ? `Area : ${item.propertyDesc.size} m2` : `المساحة: ${item.propertyDesc.size} متر مربع `}</p>
                             <div className="d-flex ">
                                 <i className="fa-solid fa-location-dot ms-2 "></i>
                                 <p className="">{item.location}</p>
@@ -85,19 +85,19 @@ export default function GetProducts() {
                                 <Link to={`/productdetails/${item.categoryId.slug}/${item._id}`}>
                                     <button className={` px-4 py-2 fw-bold m-2  rounded-1 ${style.contactButton} `}>
 
-                                        {language == 'ع' ? `details` : 'التفاصيل'}
+                                        {language === 'ع' ? `details` : 'التفاصيل'}
                                     </button>
                                 </Link>
                                 <button type="button" className={` px-4 py-2 fw-bold m-2  rounded-1 ${style.contactButton} mx-2`} data-bs-toggle="modal" data-bs-target="#exampleModal">
 
-                                    {language == 'ع' ? `Phone` : 'اتصل'}
+                                    {language === 'ع' ? `Phone` : 'اتصل'}
                                 </button>
                                 <button type="button" className={` px-4 py-2 fw-bold  m-2 rounded-1 ${style.contactButton} mx-2`} data-bs-toggle="modal" data-bs-target="#exampleModal">
 
-                                    {language == 'ع' ? `Mail` : 'الايميل'}
+                                    {language === 'ع' ? `Mail` : 'الايميل'}
                                 </button>
 
-                                <div className="modal fade my-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div className="modal fade my-5" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div className="modal-dialog my-5">
                                         <div className="modal-content">
                                             <div className="modal-header">
@@ -105,10 +105,10 @@ export default function GetProducts() {
                                             </div>
                                             <div className="modal-body">
                                                 <p>
-                                                    {language == 'ع' ? ` Phone : ${item.createdBy.phoneNumber}` : `رقم الهاتف: ${item.createdBy.phoneNumber}`}
+                                                    {language === 'ع' ? ` Phone : ${item.createdBy.phoneNumber}` : `رقم الهاتف: ${item.createdBy.phoneNumber}`}
                                                 </p>
                                                 <p>
-                                                    {language == 'ع' ? `Email : ${item.createdBy.email}` : `البريد الالكتروني : ${item.createdBy.email}`}
+                                                    {language === 'ع' ? `Email : ${item.createdBy.email}` : `البريد الالكتروني : ${item.createdBy.email}`}
 
 
                                                 </p>
@@ -116,7 +116,7 @@ export default function GetProducts() {
                                             <div className="modal-footer">
                                                 <a href={`mailto:${item.createdBy.email}?subject=Subject line`}>
                                                     <button type="button" className={` px-4 py-2 fw-bold  rounded-1 ${style.contactButton} mx-2`}>
-                                                        {language == 'ع' ? `Send Messange` : `ارسل رسالة`}
+                                                        {language === 'ع' ? `Send Messange` : `ارسل رسالة`}
 
                                                     </button>
                                                 </a>

@@ -17,12 +17,11 @@ export default function Categories() {
     };
     useEffect(() => {
         getCategory();
-        console.log(categories)
     }, [categories.length]);
     return <>
   
         <div className="container py-5">
-            <h3 className="text-center ">      {language == 'ع' ? "Search for properites for sale and rent in Egypt" : "  ابحث عن عقارات للبيع و للايجار في مصر   "} </h3>
+            <h3 className="text-center ">      {language === 'ع' ? "Search for properites for sale and rent in Egypt" : "  ابحث عن عقارات للبيع و للايجار في مصر   "} </h3>
             <div className="row mt-5 g-3 justify-content-center">
                 {categories.length <= 0 ? arr.map((item, index) => <div key={index} className="  col-sm-12 col-md-6 col-lg-3">
                     <div className={`card  p-3`} aria-hidden="true">
@@ -48,7 +47,7 @@ export default function Categories() {
                                 <img src={item.image.secure_url} className="  w-100" alt="" />
                             </div>
                             <h3 className="text-center fw-bold mt-4 h5">{item.name}</h3>
-                            <p className="fs-6 text-center">{item.products.length} {language == 'ع' ? "Item" : "  عنصر   "}</p>
+                            <p className="fs-6 text-center">{item.products.length} {language === 'ع' ? "Item" : "  عنصر   "}</p>
                         </div>
                     </Link>
                 </div>)}

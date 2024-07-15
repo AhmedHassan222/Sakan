@@ -3,12 +3,10 @@ import style from "../../Componants/GetProduts/GetProducts.module.css"
 import { useContext, useEffect, useState } from "react";
 import { FilterProducts } from './../../Context/FilterProducts';
 import axios from "axios";
-import fakeImage from "../../assets/images/Annotation 2024-02-21 205940.png"
-
 export default function MyAd() {
     let { setElement } = useContext(FilterProducts)
     const [myAdv, setAdv] = useState(null);
-    let { setExpired, expired, userData, setuserData, language } = useContext(FilterProducts)
+    let { userData, language } = useContext(FilterProducts)
     let [isLoading, setIsLoading] = useState(false)
     let navigate = useNavigate()
     async function getMyAdv() {
@@ -53,17 +51,17 @@ export default function MyAd() {
                 <h3 className="text-primary col-sm-12 col-md-12 col-lg-6 fw-bold">My Properties</h3>
                 <div className=" d-flex justify-content-center col-sm-12 col-md-12 col-lg-6">
                     <Link className="d-flex justify-content-center nav-link " to={`/myzone/65d8c2138bfd8107356010e2`}>
-                        <button className={` px-4 py-2 fw-bold  rounded-1 btn btn-primary mx-2`}>  {language == 'ع' ? "AddAppartment" : "اضف شقة"}</button>
+                        <button className={` px-4 py-2 fw-bold  rounded-1 btn btn-primary mx-2`}>  {language === 'ع' ? "AddAppartment" : "اضف شقة"}</button>
                     </Link>
                     <Link className="d-flex justify-content-center nav-link  mx-2" to={`/myzone/65d8c1c01269fe7a10558011`}>
-                        <button className={` px-4 py-2 fw-bold  rounded-1 btn btn-primary mx-2`}> {language == 'ع' ? "AddHome" : "اضف بيت"}</button>
+                        <button className={` px-4 py-2 fw-bold  rounded-1 btn btn-primary mx-2`}> {language === 'ع' ? "AddHome" : "اضف بيت"}</button>
                     </Link>
                     <Link className="d-flex justify-content-center nav-link " to={`/myzone/65d8c23b1269fe7a1055818b`}>
-                        <button className={` px-4 py-2 fw-bold  rounded-1 btn btn-primary mx-2`}>   {language == 'ع' ? "AddLand" : "اضفة قطعة ارض"}</button>
+                        <button className={` px-4 py-2 fw-bold  rounded-1 btn btn-primary mx-2`}>   {language === 'ع' ? "AddLand" : "اضفة قطعة ارض"}</button>
                     </Link>
                 </div>
             </div>
-            {myAdv == null ? <h3>  {language == 'ع' ? "No Ads yet" : "لا توج اعلانات مضافة"}</h3> :
+            {myAdv === null ? <h3>  {language === 'ع' ? "No Ads yet" : "لا توج اعلانات مضافة"}</h3> :
                 <div className="row py-5">
                     {myAdv?.map((item, index) => <div key={index} className={`col-sm-12 col-md-4 col-lg-4 ${style.box2} p-4`} >
                         <Link to={`/productdetails/${item.categoryId.slug}/${item._id}`}>
@@ -73,7 +71,7 @@ export default function MyAd() {
                         </Link>
                         <div >
                             <h3 className=" fw-bold mt-4 ">
-                                {language == 'ع' ? `${item.price} EGP` : `${item.price} ج.م`}
+                                {language === 'ع' ? `${item.price} EGP` : `${item.price} ج.م`}
                             </h3>
                             <p className="fw-bold fs-5">{item.title.slice(0, 55)}  </p>
                             <div className="d-flex">
@@ -87,7 +85,7 @@ export default function MyAd() {
                                 </div>
                             </div>
                             <p className="">
-                                {language == 'ع' ? `Area: ${item.propertyDesc.size} m2` : `المساحة: ${item.propertyDesc.size} متر مربع `}
+                                {language === 'ع' ? `Area: ${item.propertyDesc.size} m2` : `المساحة: ${item.propertyDesc.size} متر مربع `}
 
                             </p>
 
